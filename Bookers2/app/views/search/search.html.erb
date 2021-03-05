@@ -1,4 +1,6 @@
 <h1>Books Search For</h1>
- <%= render 'books/index', books: @books%>
- <%= render 'users/index', users: @users%>
-
+ <% if @model == 'user' %>
+   <%= render 'users/index', users: @records%>
+ <% else @model == 'book' %>
+   <%= render 'books/index', books: @records%>
+ <% end %>

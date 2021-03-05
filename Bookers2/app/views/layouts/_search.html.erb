@@ -1,16 +1,6 @@
 <%= form_with url: search_path, method: :get, local: true do |f| %>
-  <%= f.text_field :title %>
+  <%= f.text_field :content %>
+  <%= f.select :model, [["User", "user"],["Book","book"]] %>
+  <%= f.select :method, [["完全一致", "match"],["前方一致", "forward"], ["後方一致", "backward"], ["部分一致", "partial"]]
   <%= f.submit :search %>
 <% end %>
-
-
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <a class="dropdown-item" href="#!">Action</a>
-    <a class="dropdown-item" href="#!">Another action</a>
-  </div>
-</div>
