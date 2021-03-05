@@ -1,4 +1,7 @@
-<h1>Books Search For</h1>
+<% if user_signed_in? %>
+  <%= render 'layouts/search' %>
+<% end %>
+<h1>Books search for</h1>
  <% if @model == 'user' %>
    <%= render 'users/index', users: @records%>
  <% else @model == 'book' %>
