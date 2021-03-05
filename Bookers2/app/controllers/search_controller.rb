@@ -11,7 +11,7 @@ class SearchController < ApplicationController
 
   private
 
-  def search_for
+  def search_for(model, method, content)
 
     case model
     when 'user'
@@ -29,13 +29,13 @@ class SearchController < ApplicationController
     when 'book'
 
       if method == 'match'
-        Book.where(title: "#{content}")
+        Book.where(['title LIKE ? OR body LIKE ?', "#{content}", "#{content}"])
       elsif method == 'forward'
-        Book.where('title ? OR body LIKE ?', "#{content}%", "#{content}%")
+        Book.where(['title LIKE ? OR body LIKE ?', "#{content}%", "#{content}%"])
       elsif method == 'backward'
-        Book.where('title ? OR body LIKE ?', "%#{content}", "%#{content}")
+        Book.where(['title LIKE ? OR body LIKE ?', "%#{content}", "%#{content}"])
       elsif method == 'partial'
-        Book.where('title ? OR body LIKE ?', "%#{content}%", "%#{content}%")
+        Book.where(['title LIKE ? OR body LIKE ?', "%#{content}%", "%#{content}%"])
       end
     end
   end
